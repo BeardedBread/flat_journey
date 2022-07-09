@@ -4,7 +4,6 @@ onready var wall_res = preload("res://Wall_Obstacle.tscn")
 onready var laser_e_res = preload("res://Laser_enemy.tscn")
 onready var laser_res = preload("res://Laser_obj.tscn")
 onready var laser_p_res = preload("res://laser_particle.tscn")
-onready var spore_res = preload("res://Spore.tscn")
 onready var screenSize = get_viewport().get_visible_rect().size
 onready var diffInfo = get_node("DifficultyInfo")
 
