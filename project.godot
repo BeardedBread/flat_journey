@@ -6,7 +6,7 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=3
+config_version=4
 
 [application]
 
@@ -48,6 +48,7 @@ texture={
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_clear_color=Color( 0.4375, 0.435791, 0.435791, 1 )
 environment/default_environment="res://default_env.tres"
+quality/2d/use_pixel_snap=true

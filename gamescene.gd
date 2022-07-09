@@ -88,8 +88,8 @@ func toggle_screenshake(state):
 	
 func screenshake(off,mag):	
 	$cam.set_offset(Vector2( \
-        rand_range(-off,off) * mag, \
-        rand_range(-off,off) * mag ))
+		rand_range(-off,off) * mag, \
+		rand_range(-off,off) * mag ))
 	
 func _on_leveltimer_timeout():
 	Global.diff_level = min(Global.diff_level+1,10)

@@ -15,8 +15,8 @@ static func within_bounds(val, lower, upper, inclusive = true):
 		return val<upper and val>lower
 		
 static func roll_die(n_times=1, n_sides=6):
-	assert n_times > 0
-	assert n_sides >= 1
+	assert(n_times > 0)
+	assert(n_sides >= 1)
 	var total = 0
 	for i in range(n_times):
 		total += randint(1, n_sides)
