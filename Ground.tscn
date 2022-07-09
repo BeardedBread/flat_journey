@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Ground.gd" type="Script" id=1]
+
+[node name="Ground" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Rect" ]
+n_lines = 30
+x_offset_spd = 250.0
+field_angle = 178.0
+start_y = 300
+growth = 0.5
+alpha = 0.2
+
+

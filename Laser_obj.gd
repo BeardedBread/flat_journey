@@ -6,21 +6,26 @@ extends Area2D
 onready var tween_node = $Tween
 var active = true
 var active_frames = 6;
+var parts = null
 signal kill_zone(body)
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	$activetimer.set_wait_time(active_frames/60)
+	$activetimer.set_wait_time(active_frames/60.0)
 
 func _on_Tween_tween_completed(object, key):
+	if parts:
+		get_tree().queue_delete(parts)
+		
 	get_tree().queue_delete(self)
 
 
 func _on_Laser_obj_body_entered(body):
 	if active:
-		print(body)
-		emit_signal("kill_zone", body)
+		if body.is_in_group("players"):
+			if not body.invuln:
+				emit_signal("kill_zone", body)
 
 
 func _on_activetimer_timeout():

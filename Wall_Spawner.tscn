@@ -6,9 +6,16 @@
 [node name="Wall_Spawner" type="Node2D"]
 
 script = ExtResource( 1 )
+wall_density = 1.0
+wall_dens_variance = 0.2
+shift_probability = 0.5
+laser_density = 1.0
+laser_dens_variance = 0.2
+ordered_lasers = true
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+visible = false
 texture = ExtResource( 2 )
 
 [node name="spawntimer" type="Timer" parent="." index="1"]
@@ -19,6 +26,13 @@ one_shot = false
 autostart = false
 
 [node name="lasertimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="bombtimer" type="Timer" parent="." index="3"]
 
 process_mode = 1
 wait_time = 1.0

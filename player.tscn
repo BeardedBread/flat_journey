@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://art/player.png" type="Texture" id=2]
@@ -9,7 +9,9 @@
 [ext_resource path="res://art/beam_frames/laser5.png" type="Texture" id=7]
 [ext_resource path="res://art/beam_frames/laser6.png" type="Texture" id=8]
 [ext_resource path="res://art/beam_frames/laser7.png" type="Texture" id=9]
-[ext_resource path="res://Data-Control.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://charybdis.regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://sfx/jump.wav" type="AudioStream" id=11]
+[ext_resource path="res://sfx/dead.wav" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -27,19 +29,23 @@ animations = [ {
 
 [sub_resource type="DynamicFont" id=3]
 
-size = 14
+size = 16
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 10 )
-_sections_unfolded = [ "Settings" ]
+_sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"players",
+]]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+invuln = false
+float_enable = false
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -59,7 +65,7 @@ animation = "dead"
 [node name="Timer" type="Timer" parent="." index="3"]
 
 process_mode = 1
-wait_time = 0.7
+wait_time = 1.0
 one_shot = false
 autostart = true
 
@@ -96,10 +102,30 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
+[node name="jump_sfx" type="AudioStreamPlayer" parent="." index="6"]
+
+stream = ExtResource( 11 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="dead_sfx" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 12 )
+volume_db = -10.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="timeout" from="Jumptimer" to="." method="_on_Jumptimer_timeout"]
+
+[connection signal="finished" from="dead_sfx" to="." method="_on_dead_sfx_finished"]
 
 

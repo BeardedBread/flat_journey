@@ -1,4 +1,7 @@
-build/
-*.kra~
-.import
+.import/
+*.kra*
+*~
 *.import
+*.otf
+*.ttf
+build/
